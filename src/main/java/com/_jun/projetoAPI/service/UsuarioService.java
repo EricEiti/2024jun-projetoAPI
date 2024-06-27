@@ -17,10 +17,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<UsuarioDTO> listar() {
-        return usuarioRepository.findAll().stream()
-                .map(UsuarioMapper::toDTO)
-                .collect(Collectors.toList());
+    public List<UsuarioDTO> findAll() {
+        List<UsuarioEntity> usuarios = usuarioRepository.findAll();
+        return UsuarioMapper.toListDTO(usuarios);
     }
 
     public UsuarioDTO findById(Long id) {

@@ -3,6 +3,9 @@ package com._jun.projetoAPI.mapper;
 import com._jun.projetoAPI.dto.UsuarioDTO;
 import com._jun.projetoAPI.entity.UsuarioEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsuarioMapper {
 
     public static UsuarioDTO toDTO(UsuarioEntity usuarioEntity) {
@@ -21,5 +24,13 @@ public class UsuarioMapper {
         usuario.setEmail(dto.getEmail());
         usuario.setPassword(dto.getPassword());
         return usuario;
+    }
+
+    public static List<UsuarioDTO> toListDTO(List<UsuarioEntity> list) {
+        List<UsuarioDTO> dtos = new ArrayList<>();
+        for (UsuarioEntity entity : list) {
+            dtos.add(toDTO(entity));
+        }
+        return dtos;
     }
 }
