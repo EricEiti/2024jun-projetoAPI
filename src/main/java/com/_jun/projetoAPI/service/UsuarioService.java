@@ -33,4 +33,14 @@ public class UsuarioService {
         UsuarioEntity usuarioSalvo = usuarioRepository.save(usuario);
         return UsuarioMapper.toDTO(usuarioSalvo);
     }
+
+    public UsuarioDTO alterar(UsuarioDTO usuarioDTO) {
+        UsuarioEntity usuario = UsuarioMapper.toEntity(usuarioDTO);
+        UsuarioEntity usuarioSalvo = usuarioRepository.save(usuario);
+        return UsuarioMapper.toDTO(usuarioSalvo);
+    }
+
+    public void deletar(Long id) {
+        usuarioRepository.deleteById(id);
+    }
 }

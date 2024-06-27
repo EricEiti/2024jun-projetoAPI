@@ -37,4 +37,15 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioSalvo);
     }
 
+    @PutMapping(path = "/alterar")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UsuarioDTO> alterar(@RequestBody UsuarioDTO usuarioDTO){
+        return ResponseEntity.ok(usuarioService.alterar(usuarioDTO));
+    }
+
+    @DeleteMapping(path = "/deletar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable("id") Long id) {
+        usuarioService.deletar(id);
+    }
 }
