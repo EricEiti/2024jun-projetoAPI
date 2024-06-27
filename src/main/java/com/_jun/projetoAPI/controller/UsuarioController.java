@@ -23,10 +23,18 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios);
     }
 
+    @GetMapping(path = "listar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UsuarioDTO> findById(@PathVariable("id")Long id){
+        UsuarioDTO usuarioDTO = usuarioService.findById(id);
+        return ResponseEntity.ok(usuarioDTO);
+    }
+
     @PostMapping(path = "/salvar")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UsuarioDTO> salvar(@RequestBody UsuarioDTO usuarioDTO) {
         UsuarioDTO usuarioSalvo = usuarioService.save(usuarioDTO);
         return ResponseEntity.ok(usuarioSalvo);
     }
+
 }
