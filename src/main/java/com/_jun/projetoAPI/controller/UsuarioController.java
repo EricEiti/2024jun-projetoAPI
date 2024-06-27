@@ -1,6 +1,7 @@
 package com._jun.projetoAPI.controller;
 
 import com._jun.projetoAPI.dto.UsuarioDTO;
+import com._jun.projetoAPI.entity.UsuarioEntity;
 import com._jun.projetoAPI.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,5 +48,16 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable("id") Long id) {
         usuarioService.deletar(id);
+    }
+
+    @GetMapping(path = "/buscarPorNomeEEmail/{name}/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UsuarioDTO> buscarPorNomeEEmail(@PathVariable String name, @PathVariable String email) {
+        UsuarioDTO usuarioDTO = usuarioService.findByNameAndEmail(name, email);
+        if (usuarioDTO != null) {
+            return ResponseEntity.ok(usuarioDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

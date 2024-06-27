@@ -43,4 +43,10 @@ public class UsuarioService {
     public void deletar(Long id) {
         usuarioRepository.deleteById(id);
     }
+
+    public UsuarioDTO findByNameAndEmail(String name, String email) {
+        UsuarioEntity usuarioEntity = usuarioRepository.findByNameAndEmail(name, email);
+        UsuarioDTO usuario = UsuarioMapper.toDTO(usuarioEntity);
+        return usuario;
+    }
 }
